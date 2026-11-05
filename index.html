@@ -126,6 +126,7 @@ select.st-KAD{border-color:var(--na);background:var(--nasoft)}
 .pct{font-size:13px;color:var(--ink2)}
 .pct b{color:var(--ink);font-size:15px}
 .chip{display:inline-block;border-radius:999px;padding:2.5px 10px;font-size:12px;font-weight:700}
+.chip.nx{background:var(--brandsoft);color:var(--brand)} .chip.hd{background:var(--oksoft);color:var(--ok)}
 .chip.ok{background:var(--oksoft);color:var(--ok)} .chip.late{background:var(--badsoft);color:var(--bad)}
 .chip.none{background:var(--nasoft);color:var(--na)} .chip.dat{background:var(--oksoft);color:var(--ok)}
 .chip.dm{background:var(--warnsoft);color:var(--warn)} .chip.kd{background:var(--badsoft);color:var(--bad)}
@@ -156,6 +157,18 @@ select.st-KAD{border-color:var(--na);background:var(--nasoft)}
 .example-table th,.example-table td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
 .example-table th{background:var(--surface2)}
 .table-scroll{overflow-x:auto;border-radius:10px}
+/* ---------- Nhận xét của trường ---------- */
+.review-card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow)}
+.review-card .rv-head{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}
+.review-card .rv-who{font-weight:700}
+.review-card .rv-time{font-size:12.5px;color:var(--ink2)}
+.review-card .rv-sec{margin-top:9px;font-size:14.5px;white-space:pre-wrap}
+.review-card .rv-sec b{display:block;font-size:12.5px;color:var(--ink2);margin-bottom:1px}
+.reply-box{background:var(--surface2);border-radius:10px;padding:11px 14px;margin-top:10px}
+.reply-box .rp-who{font-weight:700;font-size:14px}
+.reply-box .rp-time{font-size:12px;color:var(--ink2)}
+.reply-box .rp-body{white-space:pre-wrap;margin-top:2px}
+.empty-note{border:1.5px dashed var(--line);border-radius:var(--radius);padding:20px;text-align:center;color:var(--ink2)}
 footer{margin-top:36px;color:var(--ink2);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
 .toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:18px;background:var(--brand2);color:#fff;padding:13px 20px;border-radius:12px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.3s;z-index:60;max-width:92vw;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -234,6 +247,7 @@ var CONFIG = {
     <button role="tab" id="tabbtn-form" aria-selected="true" data-tab="form">📝 Báo cáo của tổ</button>
     <button role="tab" id="tabbtn-progress" aria-selected="false" data-tab="progress">📊 Tiến độ các tổ</button>
     <button role="tab" id="tabbtn-folders" aria-selected="false" data-tab="folders">🗂️ Thư mục minh chứng</button>
+    <button role="tab" id="tabbtn-review" aria-selected="false" data-tab="review">💬 Nhận xét của trường</button>
   </nav>
 
   <!-- ================= TAB 1: FORM ================= -->
@@ -347,6 +361,56 @@ var CONFIG = {
     <div class="folder-grid" id="folderGrid"></div>
   </section>
 
+  <!-- ================= TAB 4: NHẬN XÉT CỦA TRƯỜNG ================= -->
+  <section class="panel" id="panel-review" role="tabpanel" aria-labelledby="tabbtn-review">
+    <h2 class="ptitle">Nhận xét của trường</h2>
+    <p class="pdesc">Sau hạn nộp ngày 25, trường (BGH / Thường trực thi đua) trả nhận xét cho từng tổ vào <b>ngày 28</b> theo nội dung phiếu nhận xét BM-04. Tổ trưởng xem nhận xét và <b>hồi đáp ngay bên dưới mỗi nhận xét</b>; hạn hồi đáp mặc định là 03 ngày làm việc kể từ ngày 28 của kỳ.</p>
+
+    <form id="reviewForm" novalidate>
+      <div class="card">
+        <h3>Trường gửi nhận xét cho tổ</h3>
+        <div class="grid2">
+          <div>
+            <label class="flabel" for="nxOrgSelect">Tổ được nhận xét *</label>
+            <select id="nxOrgSelect"></select>
+          </div>
+          <div>
+            <label class="flabel" for="nxPeriodSelect">Kỳ báo cáo *</label>
+            <select id="nxPeriodSelect"></select>
+          </div>
+          <div>
+            <label class="flabel" for="nxPerson">Người nhận xét (họ tên / chức vụ) *</label>
+            <input id="nxPerson" type="text" placeholder="Ví dụ: Huỳnh Trung Nam — Phó Hiệu trưởng" autocomplete="name" />
+          </div>
+          <div>
+            <label class="flabel" for="nxDue">Hạn tổ hồi đáp</label>
+            <input id="nxDue" type="date" />
+            <div class="hint">Mặc định gợi ý: 03 ngày làm việc sau ngày 28 của kỳ — sửa được nếu cần.</div>
+          </div>
+        </div>
+        <div style="display:grid;gap:12px;margin-top:12px">
+          <div>
+            <label class="flabel" for="nxGeneral">Đánh giá chung *</label>
+            <textarea id="nxGeneral" placeholder="Nhận xét tổng quát về báo cáo và kết quả thực hiện của tổ trong kỳ…"></textarea>
+          </div>
+          <div>
+            <label class="flabel" for="nxDone">Điểm đã đạt</label>
+            <textarea id="nxDone" placeholder="Việc, chỉ tiêu tổ làm tốt cần ghi nhận, phát huy…"></textarea>
+          </div>
+          <div>
+            <label class="flabel" for="nxTodo">Việc cần bổ sung / làm rõ</label>
+            <textarea id="nxTodo" placeholder="Số liệu cần làm rõ, minh chứng cần bổ sung, việc cần khắc phục…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn" id="nxSubmitBtn" style="margin-top:14px">Gửi nhận xét</button>
+        <span id="nxMsg" style="margin-left:12px;font-weight:600"></span>
+      </div>
+    </form>
+
+    <h3 style="margin:22px 0 10px;font-size:16.5px">Nhận xét đã gửi — <span id="reviewListLabel"></span></h3>
+    <div id="reviewList"></div>
+  </section>
+
   <footer>
     Căn cứ: KH 665/KH-THPTNTT2 (phát động thi đua năm học 2026–2027) và 4 KH chuyên đề 666 (giáo dục đạo đức HS), 682 (nhà trường xanh – trường học sạch), 683 (nâng cao chất lượng thi tốt nghiệp THPT 2027), 684 (chuyển đổi số &amp; AI). Hạn nộp báo cáo tháng: <b>ngày 25 hằng tháng</b>; trường tổng hợp và trả nhận xét <b>ngày 28</b>; tổ hồi đáp trong 03 ngày làm việc. Mã trạng thái: Đ = đạt · ĐM = đạt một phần · KĐ = không đạt · KAD = không áp dụng · Chưa BC = chưa báo cáo.
   </footer>
@@ -397,6 +461,43 @@ var INDICATORS = [
   { code:"CT4.5", group:"CT4", name:"Thành lập hoặc duy trì 01 Câu lạc bộ chuyển đổi số / nhóm nòng cốt, chia sẻ và hỗ trợ đồng nghiệp (chỉ tiêu cấp trường)", measure:"Hoạt động của CLB/nhóm nòng cốt trong tháng; số lượt hỗ trợ đồng nghiệp", applies:"Cấp trường: nhóm nòng cốt / Văn phòng báo cáo; tổ khác chọn KAD" },
   { code:"CT4.6", group:"CT4", name:"100% hoạt động ứng dụng AI tuân thủ bảo mật, kiểm chứng thông tin, tôn trọng bản quyền, bảo vệ dữ liệu HS", measure:"Số hoạt động AI đã kiểm chứng đúng quy định / tổng hoạt động AI của tổ trong tháng", applies:"Tất cả 12 tổ" }
 ];
+/* ----- Lũy kế tự động -----
+   Chỉ tiêu ĐẾM SỐ LƯỢNG (số việc, số vụ, số gương, số điểm/lần/ngày kiểm tra,
+   số đợt, số sai sót, số hoạt động/sản phẩm, số lượt hỗ trợ...): lũy kế tự
+   tính = lũy kế kỳ trước gần nhất có dữ liệu của cùng tổ + kết quả tháng này.
+   Các chỉ tiêu còn lại đo bằng tỉ lệ % / điểm / tỉ lệ bao phủ (số đã đạt trên
+   tổng số) hoặc số còn tồn tại ở thời điểm báo cáo — cộng dồn sẽ sai nên vẫn
+   nhập tay, gợi ý ô đổi thành "Tỉ lệ/điểm tính đến tháng này". */
+var CUM_COUNT_CODES = ["CT1.2","CT1.3","CT1.5","CT2.3","CT2.5","CT2.6","CT3.4","CT3.5","CT4.3","CT4.4","CT4.5"];
+function isCumCount(code){ return CUM_COUNT_CODES.indexOf(code) >= 0; }
+var cumManual = {};
+function prevCumFor(org, periodId, code){
+  var idx = -1, i;
+  for (i=0;i<PERIODS.length;i++) if (PERIODS[i].id===periodId) idx = i;
+  if (idx <= 0) return { value:0, found:false };
+  for (i=idx-1;i>=0;i--){
+    var r = findReport(org, PERIODS[i].id);
+    if (r && r.rows && r.rows[code] && r.rows[code].cum != null && r.rows[code].cum !== "" && !isNaN(parseFloat(r.rows[code].cum))){
+      return { value: parseFloat(r.rows[code].cum), found:true };
+    }
+  }
+  return { value:0, found:false };
+}
+function fmtCumNum(n){ return String(Math.round(n*10000)/10000); }
+function autoCumFor(code){
+  if (!isCumCount(code) || cumManual[code]) return;
+  var resEl = document.getElementById("res_"+code);
+  var cumEl = document.getElementById("cum_"+code);
+  if (!resEl || !cumEl) return;
+  var orgEl = document.getElementById("orgSelect");
+  var perEl = document.getElementById("periodSelect");
+  if (!orgEl || !perEl) return;
+  var prev = prevCumFor(orgEl.value, perEl.value, code);
+  if (resEl.value === "" || resEl.value == null){ cumEl.value = prev.found ? fmtCumNum(prev.value) : ""; return; }
+  var res = parseFloat(resEl.value);
+  if (isNaN(res)){ cumEl.value = prev.found ? fmtCumNum(prev.value) : ""; return; }
+  cumEl.value = fmtCumNum(prev.value + res);
+}
 var GVCN_ORGS = ["T01","T02","T03","T04","T05","T06","T07","T08","T09"];
 var LOP12_ORGS = ["T01","T02","T03","T04","T05","T06","T07","T08","T09"];
 var BG_FIELDS = [
@@ -419,6 +520,8 @@ var STATUSES = [
 var IS_LIVE = /^https?:\/\//.test(CONFIG.APPS_SCRIPT_URL);
 var LS_KEY = "ntt2_thidua_reports_v1";
 var reports = []; // {org, period, submittedAt, reporter, bg:{}, rows:{code:{work,result,cum,status,link}}, good, hard, next}
+var feedbacks = []; // bản ghi NHAN_XET / HOI_DAP — lưu tách khóa bằng ky hậu tố _NX / _HD, KHÔNG nằm trong reports
+var LS_FB_KEY = "ntt2_thidua_feedback_v1";
 
 function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 function periodById(id){ for (var i=0;i<PERIODS.length;i++) if (PERIODS[i].id===id) return PERIODS[i]; return PERIODS[0]; }
@@ -450,9 +553,12 @@ function loadLocal(){
   try { reports = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); if(!Array.isArray(reports)) reports = []; }
   catch(e){ reports = []; }
   reports = normalizeReports(reports);
+  try { feedbacks = JSON.parse(localStorage.getItem(LS_FB_KEY) || "[]"); if(!Array.isArray(feedbacks)) feedbacks = []; }
+  catch(e){ feedbacks = []; }
+  feedbacks = normalizeFeedbacks(feedbacks);
 }
 function saveLocal(){ try { localStorage.setItem(LS_KEY, JSON.stringify(reports)); } catch(e){} }
-function cacheReports(){ try { localStorage.setItem(LS_KEY, JSON.stringify(reports)); } catch(e){} }
+function cacheReports(){ try { localStorage.setItem(LS_KEY, JSON.stringify(reports)); localStorage.setItem(LS_FB_KEY, JSON.stringify(feedbacks)); } catch(e){} }
 function setCacheNotice(on){
   var el = document.getElementById("cacheNotice");
   if (!el) return;
@@ -493,13 +599,68 @@ function normalizeReports(list){
   });
   return out;
 }
+/* ----- Nhận xét của trường & hồi đáp của tổ -----
+   Apps Script ghi đè theo khóa (to, ky): bản ghi nhận xét gửi với
+   ky = [kỳ]_NX, hồi đáp với ky = [kỳ]_HD nên KHÔNG bao giờ đè lên
+   báo cáo của tổ (ky thuần). Khi đọc, normalizeReport bỏ qua các bản
+   ghi có ky hậu tố (không thuộc danh sách kỳ chuẩn) — ma trận tiến độ
+   và tính lũy kế không bị ảnh hưởng; normalizeFeedback tách riêng
+   hai loại bản ghi này ra mảng feedbacks. */
+function normalizeFeedback(o){
+  if (!o || typeof o !== "object") return null;
+  var loai = o.loai || "";
+  if (loai !== "NHAN_XET" && loai !== "HOI_DAP") return null;
+  var ky = o.ky || o.period || "";
+  var kyGoc = o.kyGoc || "";
+  if (!kyGoc && /_(NX|HD)$/.test(ky)) kyGoc = ky.replace(/_(NX|HD)$/, "");
+  var to = o.to || o.org || "";
+  var validOrg = false, validPeriod = false, i;
+  for (i=0;i<ORGS.length;i++) if (ORGS[i].code===to) validOrg = true;
+  for (i=0;i<PERIODS.length;i++) if (PERIODS[i].id===kyGoc) validPeriod = true;
+  if (!validOrg || !validPeriod) return null;
+  return {
+    loai: loai, to: to, ky: ky, kyGoc: kyGoc,
+    thoiGianGui: o.thoiGianGui || o.submittedAt || null,
+    nguoiNhanXet: o.nguoiNhanXet || "", danhGiaChung: o.danhGiaChung || "",
+    diemDat: o.diemDat || "", canBoSung: o.canBoSung || "", hanHoiDap: o.hanHoiDap || "",
+    nguoiHoiDap: o.nguoiHoiDap || "", noiDungHoiDap: o.noiDungHoiDap || "",
+    nxId: o.nxId || ""
+  };
+}
+function normalizeFeedbacks(list){
+  var out = [];
+  if (!Array.isArray(list)) return out;
+  list.forEach(function(o){ var n = normalizeFeedback(o); if (n) out.push(n); });
+  return out;
+}
+function reviewId(rv){ return rv.thoiGianGui ? String(rv.thoiGianGui) : ""; }
+function reviewsFor(org, pid){
+  return feedbacks.filter(function(f){ return f.loai==="NHAN_XET" && f.to===org && f.kyGoc===pid; })
+    .sort(function(a,b){ return String(a.thoiGianGui||"") < String(b.thoiGianGui||"") ? -1 : 1; });
+}
+function repliesForReview(rv){
+  var id = reviewId(rv);
+  if (!id) return [];
+  return feedbacks.filter(function(f){ return f.loai==="HOI_DAP" && f.to===rv.to && f.kyGoc===rv.kyGoc && f.nxId===id; });
+}
+function orphanReplies(org, pid, rvList){
+  var ids = {};
+  rvList.forEach(function(rv){ ids[reviewId(rv)] = true; });
+  return feedbacks.filter(function(f){ return f.loai==="HOI_DAP" && f.to===org && f.kyGoc===pid && (!f.nxId || !ids[f.nxId]); });
+}
+function fmtDateTime(iso){
+  if (!iso) return "—";
+  var d = new Date(iso);
+  if (isNaN(d.getTime())) return String(iso);
+  return fmtDate(iso) + " " + ("0"+d.getHours()).slice(-2) + ":" + ("0"+d.getMinutes()).slice(-2);
+}
 function loadReports(done){
   if (!IS_LIVE){ loadLocal(); done && done(); return; }
   fetch(CONFIG.APPS_SCRIPT_URL)
     .then(function(r){ return r.json(); })
     .then(function(data){
       var list = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : null);
-      if (list){ reports = normalizeReports(list); cacheReports(); setCacheNotice(false); }
+      if (list){ reports = normalizeReports(list); feedbacks = normalizeFeedbacks(list); cacheReports(); setCacheNotice(false); }
       else { loadLocal(); setCacheNotice(true); }
       done && done();
     })
@@ -557,6 +718,9 @@ function buildIndicators(){
     html += '<div class="group-head"><h3>'+esc(g.title)+'</h3><span class="kh">'+esc(g.kh)+'</span></div><p class="group-desc">'+esc(g.desc)+'</p>';
     INDICATORS.filter(function(x){ return x.group===g.key; }).forEach(function(ind){
       var opts = STATUSES.map(function(s){ return '<option value="'+s.v+'">'+esc(s.t)+'</option>'; }).join("");
+      var countType = isCumCount(ind.code);
+      var cumPlaceholder = countType ? "Cộng dồn từ đầu năm" : "Tỉ lệ/điểm tính đến tháng này";
+      var cumNote = countType ? '<div class="hint" style="margin:-2px 0 5px">Tự cộng dồn — kiểm tra lại, sửa được nếu cần</div>' : "";
       html += '<div class="ct-card" data-code="'+ind.code+'">' +
         '<div class="ct-top"><span class="ct-code">'+ind.code+'</span><div>' +
         '<div class="ct-name">'+esc(ind.name)+'</div>' +
@@ -565,7 +729,7 @@ function buildIndicators(){
         '<div class="ct-fields">' +
           '<div class="full"><label class="flabel" for="work_'+ind.code+'">Việc đã làm trong kỳ</label><textarea id="work_'+ind.code+'" placeholder="Việc cụ thể đã làm, thời gian, người phụ trách trong tổ…"></textarea></div>' +
           '<div><label class="flabel" for="res_'+ind.code+'">Kết quả tháng (số)</label><input type="number" step="any" id="res_'+ind.code+'" inputmode="decimal" placeholder="Số lượng" /></div>' +
-          '<div><label class="flabel" for="cum_'+ind.code+'">Lũy kế (số)</label><input type="number" step="any" id="cum_'+ind.code+'" inputmode="decimal" placeholder="Cộng dồn từ đầu năm" /></div>' +
+          '<div><label class="flabel" for="cum_'+ind.code+'">Lũy kế (số)</label>' + cumNote + '<input type="number" step="any" id="cum_'+ind.code+'" inputmode="decimal" placeholder="'+cumPlaceholder+'" /></div>' +
           '<div><label class="flabel" for="st_'+ind.code+'">Trạng thái</label><select id="st_'+ind.code+'" data-status>'+opts+'</select></div>' +
           '<div class="full"><label class="flabel" for="link_'+ind.code+'">Link minh chứng (Google Drive)</label><div class="linkrow">' +
             '<input type="url" id="link_'+ind.code+'" placeholder="Dán link tệp/thư mục minh chứng đã đặt tên theo quy định…" />' +
@@ -579,6 +743,18 @@ function buildIndicators(){
   for (var i=0;i<sels.length;i++){
     sels[i].addEventListener("change", function(){ this.className = this.value ? ("st-"+this.value) : ""; });
   }
+  INDICATORS.forEach(function(ind){
+    var resEl = document.getElementById("res_"+ind.code);
+    var cumEl = document.getElementById("cum_"+ind.code);
+    if (resEl){
+      resEl.addEventListener("input", function(){ autoCumFor(ind.code); });
+      resEl.addEventListener("change", function(){ autoCumFor(ind.code); });
+    }
+    if (cumEl){
+      cumEl.addEventListener("input", function(){ if (isCumCount(ind.code)) cumManual[ind.code] = true; });
+      cumEl.addEventListener("change", function(){ if (isCumCount(ind.code)) cumManual[ind.code] = true; });
+    }
+  });
   var btns = wrap.querySelectorAll("[data-openfolder]");
   for (var j=0;j<btns.length;j++){
     btns[j].addEventListener("click", function(){ openFolder(document.getElementById("orgSelect").value); });
@@ -628,6 +804,14 @@ function updateHeader(){
 }
 
 /* ================= TIẾN ĐỘ ================= */
+function reviewMarker(org, pid){
+  var rvs = reviewsFor(org, pid);
+  if (!rvs.length) return "";
+  var replied = orphanReplies(org, pid, rvs).length > 0;
+  if (!replied) replied = rvs.some(function(rv){ return repliesForReview(rv).length > 0; });
+  return '<span class="chip nx">● Đã nhận xét</span>' +
+    '<span class="chip '+(replied?"hd":"none")+'">'+(replied?"Đã hồi đáp":"Chưa hồi đáp")+'</span>';
+}
 function reportStats(r){
   var applicable = 0, dat = 0, dm = 0, kd = 0, kad = 0;
   INDICATORS.forEach(function(ind){
@@ -662,7 +846,7 @@ function renderProgress(){
     return '<div class="org-card"><div class="row1"><span class="oname">'+esc(o.name)+'</span><span class="ocode">'+o.code+'</span></div>' +
       '<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">' +
       '<span class="chip '+(lateFlag?"late":"ok")+'">'+(lateFlag?"Đã nộp — trễ hạn":"Đã nộp — đúng hạn")+'</span>' +
-      '<span class="chip dat">Đ: '+s.dat+'</span><span class="chip dm">ĐM: '+s.dm+'</span><span class="chip kd">KĐ: '+s.kd+'</span><span class="chip none">KAD: '+s.kad+'</span></div>' +
+      '<span class="chip dat">Đ: '+s.dat+'</span><span class="chip dm">ĐM: '+s.dm+'</span><span class="chip kd">KĐ: '+s.kd+'</span><span class="chip none">KAD: '+s.kad+'</span>' + reviewMarker(o.code, pid) + '</div>' +
       '<div class="bar '+barCls+'"><i style="width:'+(s.pct||0)+'%"></i></div>' +
       '<div class="pct"><b>'+(s.pct===null?"—":s.pct+"%")+'</b> chỉ tiêu đạt · Nộp ngày '+fmtDate(r.submittedAt)+' · '+esc(r.reporter||"")+'</div></div>';
   }).join("");
@@ -709,11 +893,23 @@ function prefillForm(){
     var el = document.getElementById("bg_"+f.key);
     el.value = r && r.bg && r.bg[f.key] != null ? r.bg[f.key] : "";
   });
+  cumManual = {};
   INDICATORS.forEach(function(ind){
     var row = r && r.rows ? r.rows[ind.code] : null;
     document.getElementById("work_"+ind.code).value = row ? (row.work||"") : "";
     document.getElementById("res_"+ind.code).value = row && row.result!=null ? row.result : "";
-    document.getElementById("cum_"+ind.code).value = row && row.cum!=null ? row.cum : "";
+    var cumEl = document.getElementById("cum_"+ind.code);
+    if (isCumCount(ind.code) && !(row && row.cum != null)){
+      cumEl.value = "";
+      autoCumFor(ind.code);
+    } else if (isCumCount(ind.code) && row && row.cum != null){
+      cumEl.value = row.cum;
+      var prevC = prevCumFor(org, pid, ind.code);
+      var expC = (row.result != null && !isNaN(parseFloat(row.result))) ? prevC.value + parseFloat(row.result) : null;
+      if (expC !== null && Math.abs(parseFloat(row.cum) - expC) > 0.00001) cumManual[ind.code] = true;
+    } else {
+      cumEl.value = row && row.cum!=null ? row.cum : "";
+    }
     var st = document.getElementById("st_"+ind.code);
     st.value = row ? (row.status||"") : "";
     st.className = st.value ? ("st-"+st.value) : "";
@@ -798,6 +994,135 @@ document.getElementById("reportForm").addEventListener("submit", function(ev){
   }
 });
 
+/* ================= NHẬN XÉT CỦA TRƯỜNG & HỒI ĐÁP ================= */
+function buildReviewSelects(){
+  var os = document.getElementById("nxOrgSelect");
+  os.innerHTML = ORGS.map(function(o){ return '<option value="'+o.code+'">'+esc(o.code+" · Tổ "+o.name)+'</option>'; }).join("");
+  var cur = currentPeriod();
+  var ps = document.getElementById("nxPeriodSelect");
+  ps.innerHTML = PERIODS.map(function(p){ return '<option value="'+p.id+'"'+(p.id===cur.id?" selected":"")+'>'+esc(p.label)+'</option>'; }).join("");
+  updateNxDue();
+}
+function defaultDueDate(pid){
+  var parts = pid.split("_");
+  var y = parseInt(parts[0], 10);
+  var m = parts.length >= 3 ? parseInt(parts[2], 10) : parseInt(parts[1], 10);
+  var d = new Date(y, m - 1, 28);
+  var added = 0;
+  while (added < 3){
+    d.setDate(d.getDate() + 1);
+    var dow = d.getDay();
+    if (dow !== 0 && dow !== 6) added++;
+  }
+  return d.getFullYear() + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" + ("0"+d.getDate()).slice(-2);
+}
+function updateNxDue(){
+  var el = document.getElementById("nxDue");
+  var sel = document.getElementById("nxPeriodSelect");
+  if (el && sel) el.value = defaultDueDate(sel.value);
+}
+function sendFeedback(payload, done){
+  function keepLocal(){
+    var n = normalizeFeedback(payload);
+    if (n) feedbacks.push(n);
+    try { localStorage.setItem(LS_FB_KEY, JSON.stringify(feedbacks)); } catch(e){}
+    done && done();
+  }
+  if (IS_LIVE){
+    fetch(CONFIG.APPS_SCRIPT_URL, { method:"POST", headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
+      .then(function(){ loadReports(function(){ done && done(); }); })
+      .catch(function(){ keepLocal(); setCacheNotice(true); });
+  } else keepLocal();
+}
+function renderReviewList(){
+  var orgEl = document.getElementById("nxOrgSelect");
+  var perEl = document.getElementById("nxPeriodSelect");
+  if (!orgEl || !perEl) return;
+  var org = orgEl.value, pid = perEl.value;
+  var o = orgByCode(org), p = periodById(pid);
+  document.getElementById("reviewListLabel").textContent = "Tổ " + o.name + " (" + o.code + ") · " + p.label;
+  var wrap = document.getElementById("reviewList");
+  var rvs = reviewsFor(org, pid);
+  if (!rvs.length){
+    wrap.innerHTML = '<div class="empty-note">Trường chưa trả nhận xét cho kỳ này.</div>';
+    return;
+  }
+  var orphans = orphanReplies(org, pid, rvs);
+  wrap.innerHTML = rvs.map(function(rv, i){
+    var reps = repliesForReview(rv).slice();
+    if (i === rvs.length - 1) reps = reps.concat(orphans);
+    var h = '<div class="review-card">' +
+      '<div class="rv-head"><span class="rv-who">'+esc(rv.nguoiNhanXet || "Trường")+'</span>' +
+      '<span class="rv-time">Gửi: '+esc(fmtDateTime(rv.thoiGianGui))+(rv.hanHoiDap ? ' · Hạn hồi đáp: '+esc(fmtDate(rv.hanHoiDap)) : '')+'</span></div>' +
+      (rv.danhGiaChung ? '<div class="rv-sec"><b>Đánh giá chung</b>'+esc(rv.danhGiaChung)+'</div>' : '') +
+      (rv.diemDat ? '<div class="rv-sec"><b>Điểm đã đạt</b>'+esc(rv.diemDat)+'</div>' : '') +
+      (rv.canBoSung ? '<div class="rv-sec"><b>Việc cần bổ sung / làm rõ</b>'+esc(rv.canBoSung)+'</div>' : '');
+    reps.forEach(function(rp){
+      h += '<div class="reply-box"><span class="rp-who">Hồi đáp — '+esc(rp.nguoiHoiDap || "Tổ trưởng")+'</span> ' +
+        '<span class="rp-time">'+esc(fmtDateTime(rp.thoiGianGui))+'</span><div class="rp-body">'+esc(rp.noiDungHoiDap)+'</div></div>';
+    });
+    h += '<div style="margin-top:12px;border-top:1px solid var(--line);padding-top:10px">' +
+      '<label class="flabel" for="hdName_'+i+'">Họ tên người hồi đáp (tổ trưởng)</label>' +
+      '<input id="hdName_'+i+'" type="text" placeholder="Họ tên tổ trưởng / người hồi đáp" />' +
+      '<label class="flabel" for="hdText_'+i+'" style="margin-top:8px">Nội dung hồi đáp của tổ</label>' +
+      '<textarea id="hdText_'+i+'" placeholder="Tổ đã bổ sung, làm rõ những gì; minh chứng bổ sung nằm ở tệp/thư mục nào…"></textarea>' +
+      '<button type="button" class="btn ghost small" data-reply="'+i+'" style="margin-top:8px">Gửi hồi đáp</button></div>';
+    h += '</div>';
+    return h;
+  }).join("");
+  var btns = wrap.querySelectorAll("[data-reply]");
+  for (var j=0;j<btns.length;j++){
+    btns[j].addEventListener("click", function(){
+      submitReply(rvs[parseInt(this.getAttribute("data-reply"), 10)], parseInt(this.getAttribute("data-reply"), 10), this);
+    });
+  }
+}
+function submitReply(rv, idx, btn){
+  var nameEl = document.getElementById("hdName_"+idx);
+  var textEl = document.getElementById("hdText_"+idx);
+  var name = nameEl.value.trim(), text = textEl.value.trim();
+  if (!name){ toast("Chưa ghi họ tên người hồi đáp.", true); nameEl.focus(); return; }
+  if (!text){ toast("Chưa nhập nội dung hồi đáp.", true); textEl.focus(); return; }
+  btn.disabled = true;
+  var payload = {
+    loai: "HOI_DAP", to: rv.to, ky: rv.kyGoc + "_HD", kyGoc: rv.kyGoc,
+    nguoiHoiDap: name, noiDungHoiDap: text, nxId: reviewId(rv),
+    submittedAt: new Date().toISOString()
+  };
+  sendFeedback(payload, function(){
+    renderReviewList(); renderProgress();
+    toast("Đã gửi hồi đáp của Tổ " + orgByCode(rv.to).name + " cho nhận xét này.");
+  });
+}
+document.getElementById("reviewForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var org = document.getElementById("nxOrgSelect").value;
+  var pid = document.getElementById("nxPeriodSelect").value;
+  var person = document.getElementById("nxPerson").value.trim();
+  var general = document.getElementById("nxGeneral").value.trim();
+  if (!person){ toast("Chưa ghi người nhận xét.", true); document.getElementById("nxPerson").focus(); return; }
+  if (!general){ toast("Chưa nhập đánh giá chung.", true); document.getElementById("nxGeneral").focus(); return; }
+  var btn = document.getElementById("nxSubmitBtn");
+  var msg = document.getElementById("nxMsg");
+  btn.disabled = true; msg.textContent = "Đang gửi…"; msg.style.color = "var(--ink2)";
+  var payload = {
+    loai: "NHAN_XET", to: org, ky: pid + "_NX", kyGoc: pid,
+    nguoiNhanXet: person, danhGiaChung: general,
+    diemDat: document.getElementById("nxDone").value.trim(),
+    canBoSung: document.getElementById("nxTodo").value.trim(),
+    hanHoiDap: document.getElementById("nxDue").value || "",
+    submittedAt: new Date().toISOString()
+  };
+  sendFeedback(payload, function(){
+    btn.disabled = false; msg.textContent = "";
+    document.getElementById("nxGeneral").value = "";
+    document.getElementById("nxDone").value = "";
+    document.getElementById("nxTodo").value = "";
+    renderReviewList(); renderProgress();
+    toast("Đã gửi nhận xét cho Tổ " + orgByCode(org).name + " — " + periodById(pid).label + ".");
+  });
+});
+
 /* ================= TABS & SỰ KIỆN ================= */
 function switchTab(name){
   var tabs = document.querySelectorAll(".tabs button");
@@ -813,11 +1138,13 @@ document.getElementById("orgSelect").addEventListener("change", function(){ refr
 document.getElementById("periodSelect").addEventListener("change", prefillForm);
 document.getElementById("progressPeriod").addEventListener("change", renderProgress);
 document.getElementById("openFolderBtn").addEventListener("click", function(){ openFolder(document.getElementById("orgSelect").value); });
+document.getElementById("nxOrgSelect").addEventListener("change", renderReviewList);
+document.getElementById("nxPeriodSelect").addEventListener("change", function(){ updateNxDue(); renderReviewList(); });
 
 /* ================= CHẠY ================= */
-buildSelects(); buildBgFields(); buildIndicators(); buildFolders(); buildBanner();
+buildSelects(); buildBgFields(); buildIndicators(); buildFolders(); buildBanner(); buildReviewSelects();
 refreshBgVisibility();
-loadReports(function(){ prefillForm(); renderProgress(); updateHeader(); });
+loadReports(function(){ prefillForm(); renderProgress(); updateHeader(); renderReviewList(); });
 </script>
 </body>
 </html>
