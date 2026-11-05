@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>Báo cáo tháng 12 tổ — Thi đua 2026–2027 | THPT Nguyễn Trung Trực 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Noto+Serif:wght@700;800&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f6f4ee; --surface:#ffffff; --surface2:#efeadf; --ink:#1c2420; --ink2:#4c5a52; --line:#ddd6c6;
+  --brand:#0f5b4d; --brand2:#0a4438; --brandsoft:#e3efe9; --amber:#b97e14; --ambersoft:#fbf0d7;
+  --ok:#177245; --oksoft:#e2f2e7; --warn:#9a6a08; --warnsoft:#fdf3d3; --bad:#b3352b; --badsoft:#fbe7e4;
+  --na:#6b7280; --nasoft:#eceff1; --radius:14px; --shadow:0 1px 3px rgba(20,40,30,.08),0 8px 24px rgba(20,40,30,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121815; --surface:#1b221e; --surface2:#232b26; --ink:#eef2ee; --ink2:#a9b8ae; --line:#333f37;
+    --brand:#3aa58a; --brand2:#57bfa2; --brandsoft:#17362d; --amber:#e0aa3e; --ambersoft:#3a2f14;
+    --ok:#4fc381; --oksoft:#173626; --warn:#e3b94e; --warnsoft:#38300f; --bad:#ef7d72; --badsoft:#3d1d19;
+    --na:#9aa5a0; --nasoft:#262d2a; --shadow:0 1px 3px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:15.5px;line-height:1.55}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px 56px}
+h1,h2,h3{line-height:1.25;margin:0}
+button{font:inherit;cursor:pointer}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;width:100%}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:var(--brand)}
+textarea{resize:vertical;min-height:56px}
+label.flabel{display:block;font-size:12.5px;font-weight:600;color:var(--ink2);margin:0 0 5px;letter-spacing:.01em}
+a{color:var(--brand)}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+
+/* ---------- Header ---------- */
+.hero{background:var(--brand2);color:#f2f7f3;margin:0 -16px;padding:26px 16px 22px}
+@media (prefers-color-scheme: dark){.hero{background:#0d2f27}}
+.hero-in{max-width:1120px;margin:0 auto}
+.school{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+.hero h1{font-family:"Noto Serif",serif;font-size:clamp(26px,5.4vw,40px);font-weight:800;margin:8px 0 6px}
+.hero .sub{opacity:.92;max-width:720px;font-size:15px}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:18px}
+@media(min-width:760px){.hero-grid{grid-template-columns:1.3fr 1fr 1fr}}
+.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.22);border-radius:var(--radius);padding:14px 16px}
+.hero-card .k{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.hero-card .v{font-size:22px;font-weight:800;margin-top:2px}
+.hero-card .d{font-size:13px;opacity:.85}
+#countdownNum{font-size:34px}
+.milestones{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.milestones span{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:4px 11px;font-size:12.5px}
+
+/* ---------- Banner / notices ---------- */
+.banner{border-radius:var(--radius);padding:13px 16px;margin:18px 0 0;font-size:14.5px;border:1.5px solid}
+.banner.trial{background:var(--warnsoft);border-color:var(--warn);color:var(--ink)}
+.banner.live{background:var(--oksoft);border-color:var(--ok)}
+.banner strong{display:block;margin-bottom:2px}
+code,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em;background:var(--surface2);border-radius:6px;padding:1px 6px;word-break:break-all}
+
+/* ---------- Tabs ---------- */
+.tabs{display:flex;gap:6px;margin:22px 0 0;background:var(--surface2);border-radius:12px;padding:5px;position:sticky;top:8px;z-index:30}
+.tabs button{flex:1;border:0;background:transparent;border-radius:9px;padding:11px 6px;font-weight:700;font-size:14.5px;color:var(--ink2)}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--brand);box-shadow:var(--shadow)}
+section.panel{display:none;padding-top:20px}
+section.panel.active{display:block}
+.panel h2.ptitle{font-family:"Noto Serif",serif;font-size:23px;margin-bottom:4px}
+.panel .pdesc{color:var(--ink2);margin:0 0 16px;max-width:760px}
+
+/* ---------- Form ---------- */
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:16px}
+.card h3{font-size:16.5px;margin-bottom:10px}
+.grid2{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+.grid-bg{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(min-width:860px){.grid-bg{grid-template-columns:repeat(4,1fr)}}
+.hint{font-size:12.5px;color:var(--ink2);margin-top:4px}
+.group-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:26px 0 4px}
+.group-head h3{font-family:"Noto Serif",serif;font-size:19px;color:var(--brand2)}
+@media (prefers-color-scheme: dark){.group-head h3{color:var(--brand2)}}
+.group-head .kh{font-size:12.5px;font-weight:700;background:var(--brandsoft);color:var(--brand);border-radius:999px;padding:3px 10px}
+.group-desc{color:var(--ink2);font-size:13.5px;margin:0 0 10px}
+.ct-card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:15px 16px;margin-bottom:12px}
+.ct-top{display:flex;gap:10px;align-items:flex-start}
+.ct-code{flex:0 0 auto;font-weight:800;background:var(--brand);color:#fff;border-radius:8px;padding:3px 9px;font-size:13.5px;margin-top:2px}
+.ct-name{font-weight:600;font-size:15px}
+.ct-measure{font-size:13px;color:var(--ink2);margin-top:2px}
+.ct-measure b{color:var(--ink)}
+.ct-fields{display:grid;grid-template-columns:1fr;gap:10px;margin-top:11px}
+@media(min-width:760px){.ct-fields{grid-template-columns:1.6fr .7fr .7fr .9fr}}
+.ct-fields .full{grid-column:1/-1}
+.linkrow{display:flex;gap:8px}
+.linkrow input{flex:1;min-width:0}
+.btn{border:1.5px solid var(--brand);background:var(--brand);color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:14.5px}
+.btn:hover{background:var(--brand2)}
+.btn.ghost{background:transparent;color:var(--brand)}
+.btn.ghost:hover{background:var(--brandsoft)}
+.btn.small{padding:8px 11px;font-size:13px;white-space:nowrap}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-submit{width:100%;padding:15px;font-size:16.5px;margin-top:6px}
+@media(min-width:640px){.btn-submit{width:auto;min-width:320px}}
+select.st-D{border-color:var(--ok);background:var(--oksoft)}
+select.st-DM{border-color:var(--warn);background:var(--warnsoft)}
+select.st-KD{border-color:var(--bad);background:var(--badsoft)}
+select.st-KAD{border-color:var(--na);background:var(--nasoft)}
+
+/* ---------- Progress ---------- */
+.stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+@media(min-width:760px){.stats-row{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:13px 15px}
+.stat .n{font-size:26px;font-weight:800;color:var(--brand)}
+.stat .t{font-size:13px;color:var(--ink2)}
+.org-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:640px){.org-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.org-grid{grid-template-columns:repeat(3,1fr)}}
+.org-card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.org-card .row1{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.org-card .oname{font-weight:700;font-size:16px}
+.org-card .ocode{font-size:12px;color:var(--ink2);font-weight:600}
+.bar{height:10px;background:var(--surface2);border-radius:99px;overflow:hidden;margin:10px 0 6px}
+.bar i{display:block;height:100%;background:var(--brand);border-radius:99px;transition:width .5s ease}
+.bar.low i{background:var(--amber)} .bar.zero i{background:var(--bad)}
+.pct{font-size:13px;color:var(--ink2)}
+.pct b{color:var(--ink);font-size:15px}
+.chip{display:inline-block;border-radius:999px;padding:2.5px 10px;font-size:12px;font-weight:700}
+.chip.ok{background:var(--oksoft);color:var(--ok)} .chip.late{background:var(--badsoft);color:var(--bad)}
+.chip.none{background:var(--nasoft);color:var(--na)} .chip.dat{background:var(--oksoft);color:var(--ok)}
+.chip.dm{background:var(--warnsoft);color:var(--warn)} .chip.kd{background:var(--badsoft);color:var(--bad)}
+.spec-bars{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:760px){.spec-bars{grid-template-columns:1fr 1fr}}
+.spec{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:13px 16px}
+.spec .st{font-weight:700;font-size:14.5px}
+.matrix-org{border:1.5px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:12px 14px;margin-bottom:10px}
+.matrix-org .mname{font-weight:700;margin-bottom:8px}
+.pchips{display:flex;flex-wrap:wrap;gap:6px}
+.pchip{border:1.5px solid var(--line);border-radius:9px;padding:5px 9px;font-size:12px;background:var(--surface2);color:var(--ink2)}
+.pchip.done{background:var(--oksoft);border-color:var(--ok);color:var(--ink)}
+.pchip.done-late{background:var(--badsoft);border-color:var(--bad);color:var(--ink)}
+.pchip b{display:block;font-size:12.5px}
+
+/* ---------- Folders ---------- */
+.folder-grid{display:grid;grid-template-columns:1fr;gap:10px}
+@media(min-width:640px){.folder-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1000px){.folder-grid{grid-template-columns:repeat(3,1fr)}}
+.folder-card{background:var(--surface);border:1.5px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
+.folder-card .fname{font-weight:700}
+.folder-card .fcode{font-size:12.5px;color:var(--ink2)}
+.rule{background:var(--ambersoft);border:1.5px solid var(--amber);border-radius:var(--radius);padding:15px 17px;margin-bottom:14px}
+.rule h3{margin-bottom:6px}
+.rule ol{margin:6px 0 0;padding-left:20px}
+.rule li{margin-bottom:5px}
+.example-table{width:100%;border-collapse:collapse;font-size:13.5px}
+.example-table th,.example-table td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+.example-table th{background:var(--surface2)}
+.table-scroll{overflow-x:auto;border-radius:10px}
+footer{margin-top:36px;color:var(--ink2);font-size:13px;border-top:1px solid var(--line);padding-top:14px}
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:18px;background:var(--brand2);color:#fff;padding:13px 20px;border-radius:12px;font-weight:600;box-shadow:0 10px 30px rgba(0,0,0,.3);opacity:0;pointer-events:none;transition:.3s;z-index:60;max-width:92vw;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{background:var(--bad)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- ================================================================
+     CẤU HÌNH — 13 liên kết thật của trường (đã gắn)
+     - ROOT_FOLDER_URL: thư mục gốc MINH_CHUNG_THI_DUA_2026_2027.
+     - DRIVE_FOLDERS: 12 link thư mục Google Drive của 12 tổ (T01–T12).
+     - APPS_SCRIPT_URL: link Web App (Google Apps Script) — báo cáo gửi
+       về Google Sheet chung, mọi tổ thấy tiến độ của nhau.
+     ================================================================ -->
+<script>
+var CONFIG = {
+  APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbzPndYsiDJACUjA3rg3C8ifuETDXf-2UP7HC0KX_Mjy8aQUEzkeThQh9YdYgAoD5J7A/exec",
+  ROOT_FOLDER_URL: "https://drive.google.com/drive/folders/1c9Hgdb8wBWHZ3_oRqjgC_LyTar_bFDuO",
+  DRIVE_FOLDERS: [
+    { code: "T01", name: "Toán",          url: "https://drive.google.com/drive/folders/1woc4Lb4aLCZ2bltEMr29ojfeI6u7sX-N" },
+    { code: "T02", name: "Vật lí – CN",   url: "https://drive.google.com/drive/folders/11Qv9soWXtCComy65Px6yY9o57sMdx7aw" },
+    { code: "T03", name: "Hóa học",       url: "https://drive.google.com/drive/folders/15K4PS4Si6VTzwNndWl3XicPCXWOddLw2" },
+    { code: "T04", name: "Sinh học – CN", url: "https://drive.google.com/drive/folders/1btb6JsWtk0dxuuLsfNM74zWJJaPc21ld" },
+    { code: "T05", name: "Ngữ văn",       url: "https://drive.google.com/drive/folders/1K6PO7qdPP0vJwDcs9AgtOU3m1tqk2_ed" },
+    { code: "T06", name: "Lịch sử",       url: "https://drive.google.com/drive/folders/1vvLMYMtl0VW6B0UO005rf5IWeiL6-pkd" },
+    { code: "T07", name: "Địa lí – GDKTPL", url: "https://drive.google.com/drive/folders/1KNOIs7EcspTBwIFuOP70GS6-dXpzOlAK" },
+    { code: "T08", name: "Tiếng Anh",     url: "https://drive.google.com/drive/folders/1knXIUR-3OwxqMJG1lp4vP7eWZ2ECrK3M" },
+    { code: "T09", name: "Tin học",       url: "https://drive.google.com/drive/folders/113FBo2_BO_Yt-UZRmlr2AHgbryIHO-57" },
+    { code: "T10", name: "GDTC-QPAN",     url: "https://drive.google.com/drive/folders/1ddLQCkU6AGP7jZPLxlb1tNgUkd87UCbH" },
+    { code: "T11", name: "TN-HN",         url: "https://drive.google.com/drive/folders/1213cU45EcGm9kJ6jNkeDn9XwL9xC-RVC" },
+    { code: "T12", name: "Văn phòng",     url: "https://drive.google.com/drive/folders/1W-ZCRZFe7viZp9rC_emnbBVQqIvKul3B" }
+  ]
+};
+</script>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="school">Trường THPT Nguyễn Trung Trực 2 · An Giang</div>
+    <h1>Báo cáo tháng của 12 tổ — Thi đua năm học 2026–2027</h1>
+    <p class="sub">Tổ trưởng báo cáo trực tiếp trên trang này theo 22 chỉ tiêu của 4 kế hoạch chuyên đề (KH 666, 682, 683, 684) thuộc phong trào thi đua KH 665/KH-THPTNTT2. Gửi xong, tiến độ của cả 12 tổ hiện ngay ở mục <b>Tiến độ các tổ</b>.</p>
+    <div class="hero-grid">
+      <div class="hero-card">
+        <div class="k">Kỳ báo cáo hiện tại</div>
+        <div class="v" id="curPeriodName">—</div>
+        <div class="d" id="curPeriodNote">Hạn nộp: ngày 25 hằng tháng · Trường trả nhận xét ngày 28</div>
+      </div>
+      <div class="hero-card">
+        <div class="k">Đếm ngược tới hạn nộp</div>
+        <div class="v"><span id="countdownNum">—</span> <span style="font-size:16px">ngày</span></div>
+        <div class="d" id="countdownDate">—</div>
+      </div>
+      <div class="hero-card">
+        <div class="k">Đã nộp kỳ này</div>
+        <div class="v"><span id="heroSubmitted">0</span>/12 tổ</div>
+        <div class="d">Xem chi tiết ở mục Tiến độ các tổ</div>
+      </div>
+    </div>
+    <div class="milestones" aria-label="Các mốc chung của năm học">
+      <span>Chậm nhất 05/11/2026: hoàn thành KH chuyên đề</span>
+      <span>Trước 15/01/2027: chấm sáng kiến</span>
+      <span>Tháng 01/2027: sơ kết HKI</span>
+      <span>Tháng 05/2027: tổng kết, chấm thi đua</span>
+      <span>Trước 10/6/2027: gửi hồ sơ thi đua</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <div id="modeBanner"></div>
+
+  <div id="cacheNotice"></div>
+
+  <nav class="tabs" role="tablist" aria-label="Khu vực chính">
+    <button role="tab" id="tabbtn-form" aria-selected="true" data-tab="form">📝 Báo cáo của tổ</button>
+    <button role="tab" id="tabbtn-progress" aria-selected="false" data-tab="progress">📊 Tiến độ các tổ</button>
+    <button role="tab" id="tabbtn-folders" aria-selected="false" data-tab="folders">🗂️ Thư mục minh chứng</button>
+  </nav>
+
+  <!-- ================= TAB 1: FORM ================= -->
+  <section class="panel active" id="panel-form" role="tabpanel" aria-labelledby="tabbtn-form">
+    <h2 class="ptitle">Báo cáo của tổ</h2>
+    <p class="pdesc">Chọn tổ và kỳ báo cáo, điền số liệu nền rồi báo cáo đủ 22 chỉ tiêu. Chỉ tiêu nào không thuộc tổ mình hoặc không phát sinh trong kỳ thì chọn trạng thái <b>KAD (Không áp dụng)</b> — không để trống. Số liệu về học sinh chỉ ghi số đếm, không ghi tên học sinh.</p>
+
+    <form id="reportForm" novalidate>
+      <div class="card">
+        <h3>1 · Thông tin chung</h3>
+        <div class="grid2">
+          <div>
+            <label class="flabel" for="orgSelect">Tổ báo cáo *</label>
+            <select id="orgSelect" required></select>
+          </div>
+          <div>
+            <label class="flabel" for="periodSelect">Kỳ báo cáo *</label>
+            <select id="periodSelect" required></select>
+          </div>
+          <div>
+            <label class="flabel" for="reporterInput">Họ tên tổ trưởng / người báo cáo *</label>
+            <input id="reporterInput" type="text" placeholder="Ví dụ: Nguyễn Văn A" autocomplete="name" />
+          </div>
+          <div>
+            <label class="flabel">Thư mục minh chứng của tổ</label>
+            <button type="button" class="btn ghost" id="openFolderBtn" style="width:100%">Mở thư mục Drive của tổ</button>
+            <div class="hint" id="folderHint">Nơi lưu toàn bộ tệp minh chứng của tổ trong cả năm học.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>2 · Số liệu nền của tổ trong kỳ <span style="color:var(--ink2);font-weight:500;font-size:13px">(theo BM-01 — ô không áp dụng với tổ thì để trống)</span></h3>
+        <div class="grid-bg" id="bgFields"></div>
+      </div>
+
+      <div id="ctGroups"></div>
+
+      <div class="card">
+        <h3>4 · Nội dung khác của tổ</h3>
+        <div style="display:grid;gap:12px">
+          <div>
+            <label class="flabel" for="goodInput">Gương tốt / việc tốt, học sinh tiến bộ được tuyên dương trong kỳ</label>
+            <textarea id="goodInput" placeholder="Ghi số lượng và việc tiêu biểu (không ghi tên học sinh khi chưa được tuyên dương công khai)…"></textarea>
+          </div>
+          <div>
+            <label class="flabel" for="hardInput">Khó khăn, tồn tại và đề xuất với nhà trường</label>
+            <textarea id="hardInput" placeholder="Việc chưa đạt, nguyên nhân, đề xuất hỗ trợ…"></textarea>
+          </div>
+          <div>
+            <label class="flabel" for="nextInput">Kế hoạch tháng sau của tổ</label>
+            <textarea id="nextInput" placeholder="Việc trọng tâm, mốc hoàn thành, người phụ trách trong tổ…"></textarea>
+          </div>
+        </div>
+        <p class="hint" style="margin-top:12px">Khi bấm <b>Gửi báo cáo</b>, báo cáo được ghi nhận kèm ngày giờ nộp; hệ thống tự đối chiếu với hạn ngày 25 để ghi <b>Đúng hạn / Trễ hạn</b> ở bảng tiến độ. Gửi lại cùng tổ + cùng kỳ sẽ ghi đè bản trước.</p>
+        <button type="submit" class="btn btn-submit" id="submitBtn">Gửi báo cáo</button>
+        <span id="submitMsg" style="margin-left:12px;font-weight:600"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- ================= TAB 2: PROGRESS ================= -->
+  <section class="panel" id="panel-progress" role="tabpanel" aria-labelledby="tabbtn-progress">
+    <h2 class="ptitle">Tiến độ thực hiện của 12 tổ</h2>
+    <p class="pdesc">Cập nhật ngay khi có tổ gửi báo cáo. <b>% đạt</b> tính trên các chỉ tiêu áp dụng với tổ (không tính chỉ tiêu KAD): số chỉ tiêu trạng thái Đ ÷ số chỉ tiêu đã báo cáo trạng thái Đ/ĐM/KĐ.</p>
+    <div style="max-width:340px;margin-bottom:16px">
+      <label class="flabel" for="progressPeriod">Xem tiến độ theo kỳ</label>
+      <select id="progressPeriod"></select>
+    </div>
+    <div class="stats-row" id="statsRow"></div>
+    <h3 style="margin:20px 0 10px;font-size:16.5px">Tiến độ từng tổ — <span id="progressPeriodLabel"></span></h3>
+    <div class="org-grid" id="orgGrid"></div>
+    <h3 style="margin:24px 0 10px;font-size:16.5px">% chỉ tiêu đạt theo 4 chuyên đề (toàn trường, kỳ đang xem)</h3>
+    <div class="spec-bars" id="specBars"></div>
+    <h3 style="margin:24px 0 10px;font-size:16.5px">Ma trận nộp báo cáo: 12 tổ × các kỳ</h3>
+    <p class="pdesc" style="margin-bottom:10px">Mỗi ô ghi kỳ báo cáo: đã nộp (kèm ngày nộp, đúng hạn/trễ) hoặc chưa nộp — để Ban Giám hiệu đôn đốc đúng tổ, đúng kỳ.</p>
+    <div id="matrixWrap"></div>
+  </section>
+
+  <!-- ================= TAB 3: FOLDERS ================= -->
+  <section class="panel" id="panel-folders" role="tabpanel" aria-labelledby="tabbtn-folders">
+    <h2 class="ptitle">Thư mục minh chứng trên Google Drive</h2>
+    <p class="pdesc">Mỗi tổ có <b>1 thư mục gốc duy nhất</b> dùng cả năm học — tổng cộng <b>12 thư mục cho 12 tổ</b>. Tổ trưởng tạo thư mục con theo từng kỳ bên trong, tải tệp minh chứng lên đúng thư mục con, rồi dán link tệp (hoặc link thư mục con) vào ô minh chứng của chỉ tiêu tương ứng khi báo cáo.</p>
+
+    <div class="rule">
+      <h3>Quy định đặt tên — áp dụng thống nhất cả trường</h3>
+      <ol>
+        <li><b>Thư mục gốc của tổ:</b> <code>MINH_CHUNG_[Mã tổ]_[TÊN TỔ]</code> — viết HOA không dấu, nối bằng dấu gạch dưới. Ví dụ: <code>MINH_CHUNG_T01_TOAN</code>, <code>MINH_CHUNG_T07_DIA_LI_GDKTPL</code>, <code>MINH_CHUNG_T12_VAN_PHONG</code>. Mã tổ T01–T12 theo đúng thứ tự danh sách 12 tổ bên dưới.</li>
+        <li><b>Thư mục con theo kỳ</b> (tạo bên trong thư mục gốc): đặt tên <code>[Năm]_[Tháng]</code> — <code>2026_11</code>, <code>2026_12</code>, <code>2027_01</code>, <code>2027_02</code>, <code>2027_03</code>, <code>2027_04</code>, <code>2027_05</code>. Riêng kỳ gộp đầu năm đặt là <code>2026_08_10</code> (tháng 8–10/2026).</li>
+        <li><b>Tệp minh chứng:</b> <code>[Kỳ]_[Mã chỉ tiêu]_[Tên việc]_[Mã tổ]</code> — viết HOA không dấu, nối bằng dấu gạch dưới, không dùng ký tự đặc biệt; dấu chấm trong mã chỉ tiêu đổi thành dấu gạch dưới. Ví dụ: <code>2026_11_CT4_2_CHUNG_NHAN_NANG_LUC_SO_T01.pdf</code> · <code>2026_12_CT1_4_SO_THEO_DOI_NEN_NEP_T05.docx</code> · <code>2027_01_CT2_6_VIEC_LAM_XANH_SACH_T03.jpg</code>.</li>
+        <li><b>Quyền chia sẻ:</b> đặt chế độ “Bất kỳ ai có liên kết đều xem được” cho thư mục gốc của tổ, để Ban Giám hiệu mở minh chứng trực tiếp từ trang này mà không cần xin quyền từng tệp.</li>
+      </ol>
+    </div>
+
+    <div class="card" style="padding:0;overflow:hidden">
+      <div class="table-scroll">
+      <table class="example-table">
+        <thead><tr><th style="min-width:170px">Thành phần tên tệp</th><th>Ví dụ</th><th style="min-width:220px">Giải thích</th></tr></thead>
+        <tbody>
+          <tr><td><code>2026_11</code></td><td rowspan="4" style="vertical-align:middle"><code>2026_11_CT4_2_CHUNG_NHAN_NANG_LUC_SO_T01.pdf</code></td><td>Kỳ báo cáo (tháng 11/2026)</td></tr>
+          <tr><td><code>CT4_2</code></td><td>Mã chỉ tiêu CT4.2 — bồi dưỡng &amp; chứng nhận năng lực số (KH 684)</td></tr>
+          <tr><td><code>CHUNG_NHAN_NANG_LUC_SO</code></td><td>Tên việc/tệp, HOA không dấu, ngắn gọn</td></tr>
+          <tr><td><code>T01</code></td><td>Mã tổ — T01 là Tổ Toán</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <h3 style="margin:20px 0 10px;font-size:16.5px">Thư mục gốc chung và 12 thư mục của 12 tổ</h3>
+    <div id="rootFolderWrap" style="margin-bottom:12px"></div>
+    <div class="folder-grid" id="folderGrid"></div>
+  </section>
+
+  <footer>
+    Căn cứ: KH 665/KH-THPTNTT2 (phát động thi đua năm học 2026–2027) và 4 KH chuyên đề 666 (giáo dục đạo đức HS), 682 (nhà trường xanh – trường học sạch), 683 (nâng cao chất lượng thi tốt nghiệp THPT 2027), 684 (chuyển đổi số &amp; AI). Hạn nộp báo cáo tháng: <b>ngày 25 hằng tháng</b>; trường tổng hợp và trả nhận xét <b>ngày 28</b>; tổ hồi đáp trong 03 ngày làm việc. Mã trạng thái: Đ = đạt · ĐM = đạt một phần · KĐ = không đạt · KAD = không áp dụng · Chưa BC = chưa báo cáo.
+  </footer>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ================= DỮ LIỆU GỐC ================= */
+var ORGS = CONFIG.DRIVE_FOLDERS;
+var PERIODS = [
+  { id:"2026_08_10", label:"Gộp tháng 8–10/2026", short:"T8–10/2026", deadline:"2026-10-25" },
+  { id:"2026_11", label:"Tháng 11/2026", short:"T11/2026", deadline:"2026-11-25" },
+  { id:"2026_12", label:"Tháng 12/2026", short:"T12/2026", deadline:"2026-12-25" },
+  { id:"2027_01", label:"Tháng 01/2027", short:"T01/2027", deadline:"2027-01-25" },
+  { id:"2027_02", label:"Tháng 02/2027", short:"T02/2027", deadline:"2027-02-25" },
+  { id:"2027_03", label:"Tháng 3/2027",  short:"T3/2027",  deadline:"2027-03-25" },
+  { id:"2027_04", label:"Tháng 4/2027",  short:"T4/2027",  deadline:"2027-04-25" },
+  { id:"2027_05", label:"Tháng 5/2027",  short:"T5/2027",  deadline:"2027-05-25" }
+];
+var GROUPS = [
+  { key:"CT1", title:"Chuyên đề 1 · Giáo dục đạo đức học sinh", kh:"KH 666", desc:"Theo dõi qua GVCN và hoạt động của tổ: phổ biến nội quy, hoạt động đạo đức – pháp luật – kỹ năng sống, xử lý vụ việc, tuyên dương gương tốt." },
+  { key:"CT2", title:"Chuyên đề 2 · Nhà trường xanh – Trường học sạch", kh:"KH 682", desc:"Theo dõi qua kiểm tra vệ sinh lớp, khu vực được phân công, rác tồn đọng, phòng học và việc làm xanh – sạch – đẹp của lớp." },
+  { key:"CT3", title:"Chuyên đề 3 · Nâng cao chất lượng thi tốt nghiệp THPT 2027", kh:"KH 683", desc:"Chỉ tiêu cuối năm (tốt nghiệp 100%, điểm TB ≥ tỉnh) được theo dõi hằng tháng bằng kết quả kiểm tra/thi thử, rà soát hồ sơ và hỗ trợ học sinh lớp 12." },
+  { key:"CT4", title:"Chuyên đề 4 · Chuyển đổi số và đổi mới sáng tạo trên nền tảng AI", kh:"KH 684", desc:"Theo dõi lũy kế: phổ biến quy định, bồi dưỡng và chứng nhận năng lực số, sản phẩm/học liệu số, ứng dụng AI đúng quy định bảo mật và bản quyền." }
+];
+var INDICATORS = [
+  { code:"CT1.1", group:"CT1", name:"100% lớp được phổ biến nội quy, quy tắc ứng xử, an toàn trường học, phòng chống bạo lực học đường; có nội dung trong sinh hoạt lớp", measure:"Số lớp đã phổ biến / tổng số lớp có GVCN thuộc tổ; biên bản sinh hoạt lớp", applies:"Tất cả các tổ có GVCN" },
+  { code:"CT1.2", group:"CT1", name:"100% HS được tham gia hoạt động giáo dục đạo đức, pháp luật, kỹ năng sống theo kế hoạch", measure:"Số hoạt động đã tổ chức/tham gia trong tháng; số HS tham gia", applies:"Tất cả các tổ" },
+  { code:"CT1.3", group:"CT1", name:"Không xảy ra vụ bạo lực học đường nghiêm trọng; mọi vụ việc đều được tiếp nhận, xác minh, xử lý và lưu hồ sơ", measure:"Số vụ phát sinh trong tháng; số vụ đã xử lý và lưu hồ sơ (chỉ ghi số đếm)", applies:"Tất cả các tổ (báo cáo ngay khi phát sinh)" },
+  { code:"CT1.4", group:"CT1", name:"100% GVCN theo dõi nền nếp, phối hợp phụ huynh, hỗ trợ HS cần quan tâm", measure:"Số GVCN đã cập nhật theo dõi / tổng GVCN của tổ; số HS được hỗ trợ", applies:"Tất cả các tổ có GVCN" },
+  { code:"CT1.5", group:"CT1", name:"Tuyên dương định kỳ gương người tốt, việc tốt, HS tiến bộ trong rèn luyện", measure:"Số gương / HS tiến bộ được tuyên dương trong tháng", applies:"Tất cả các tổ" },
+  { code:"CT2.1", group:"CT2", name:"100% lớp có phân công trực nhật, giỏ rác, dụng cụ vệ sinh; vệ sinh lớp hằng ngày", measure:"Số lớp đạt vệ sinh qua kiểm tra / tổng lớp được phân công theo dõi", applies:"Tất cả các tổ có GVCN; Văn phòng tổng hợp kiểm tra" },
+  { code:"CT2.2", group:"CT2", name:"100% khu vực lớp học, hành lang, sân trường, khu vệ sinh được phân công phụ trách, kiểm tra định kỳ", measure:"Số khu vực đã kiểm tra / tổng khu vực tổ được phân công", applies:"Tất cả các tổ theo phân công khu vực" },
+  { code:"CT2.3", group:"CT2", name:"Không để rác thải tồn đọng kéo dài; thùng rác đúng vị trí, rác thu gom về nơi quy định", measure:"Số điểm tồn đọng phát hiện trong tháng; số điểm đã xử lý xong", applies:"Tất cả các tổ theo khu vực; Văn phòng" },
+  { code:"CT2.4", group:"CT2", name:"Phòng học sạch, gọn, đủ ánh sáng; không còn vết bẩn, viết vẽ bậy chưa xử lý", measure:"Số phòng còn tồn tại chưa xử lý cuối tháng (mục tiêu 0)", applies:"Tất cả các tổ có GVCN" },
+  { code:"CT2.5", group:"CT2", name:"Nhà vệ sinh nam, nữ được kiểm tra hằng ngày, có nước sạch, báo sửa kịp thời khi hư hỏng", measure:"Số ngày đã kiểm tra / số ngày học trong tháng; số lần báo sửa", applies:"Văn phòng chủ trì; tổ trực tuần phối hợp" },
+  { code:"CT2.6", group:"CT2", name:"Mỗi lớp ít nhất 01 việc làm thiết thực góp phần xanh, sạch, đẹp; không phát sinh chi phí bắt buộc cho HS", measure:"Số việc làm thiết thực trong tháng (lũy kế hướng tới ít nhất 1 việc/lớp)", applies:"Tất cả các tổ có GVCN" },
+  { code:"CT3.1", group:"CT3", name:"Tỷ lệ tốt nghiệp THPT năm 2027 đạt 100% (chỉ tiêu cuối năm)", measure:"Hằng tháng: tỉ lệ HS lớp 12 đạt yêu cầu qua kiểm tra/thi thử của môn tổ phụ trách", applies:"Các tổ có môn thi TN lớp 12" },
+  { code:"CT3.2", group:"CT3", name:"Điểm bình quân các môn dự thi của trường bằng hoặc cao hơn điểm bình quân của tỉnh", measure:"Điểm TB thi thử theo môn trong tháng so với mốc đối chiếu (ghi rõ nguồn mốc ở ô việc đã làm)", applies:"Các tổ có môn thi TN lớp 12" },
+  { code:"CT3.3", group:"CT3", name:"100% HS lớp 12 được rà soát điều kiện dự thi, hướng dẫn thủ tục, tư vấn ôn tập, phổ biến quy chế thi", measure:"Số HS đã rà soát/tư vấn / tổng HS lớp 12 tổ/GVCN phụ trách", applies:"Các tổ có GVCN lớp 12 và môn thi TN" },
+  { code:"CT3.4", group:"CT3", name:"100% tổ/nhóm chuyên môn có kế hoạch ôn tập, kiểm tra đánh giá, phân tích kết quả; GV hỗ trợ HS cần giúp đỡ", measure:"Có KH ôn tập chưa; số đợt kiểm tra/phân tích đã làm; số HS yếu được hỗ trợ", applies:"Các tổ chuyên môn có dạy lớp 12" },
+  { code:"CT3.5", group:"CT3", name:"Không để xảy ra sai sót thuộc trách nhiệm nhà trường về hồ sơ, dữ liệu, hướng dẫn đăng ký thi", measure:"Số sai sót phát hiện trong tháng; số sai sót đã sửa xong (mục tiêu sai sót tồn 0)", applies:"Văn phòng chủ trì; các tổ liên quan hồ sơ HS" },
+  { code:"CT4.1", group:"CT4", name:"100% CBQL, GV được phổ biến kế hoạch, an toàn thông tin, sử dụng AI có trách nhiệm", measure:"Số GV đã được phổ biến / tổng GV của tổ (lũy kế)", applies:"Tất cả 12 tổ" },
+  { code:"CT4.2", group:"CT4", name:"100% GV được bồi dưỡng năng lực số và hoàn thành chứng chỉ/chứng nhận năng lực số theo quy định", measure:"Số GV đã hoàn thành / tổng GV của tổ (lũy kế; ghi rõ loại chứng nhận khi có hướng dẫn ở ô việc đã làm)", applies:"Tất cả 12 tổ" },
+  { code:"CT4.3", group:"CT4", name:"Mỗi tổ chuyên môn ít nhất 01 hoạt động chia sẻ hoặc sản phẩm/học liệu số có ứng dụng công nghệ, có minh chứng", measure:"Số hoạt động/sản phẩm trong tháng (lũy kế ít nhất 1/tổ)", applies:"Tất cả các tổ chuyên môn; Văn phòng tính tương đương theo sản phẩm số" },
+  { code:"CT4.4", group:"CT4", name:"Ứng dụng giải pháp số nâng cao chất lượng, tiến độ báo cáo và quản lý dữ liệu; không tạo thêm phần mềm/báo cáo trùng lặp", measure:"Ghi cụ thể quy trình/báo cáo đã số hóa trong tháng ở ô việc đã làm; việc trùng lặp đã cắt giảm", applies:"Tất cả 12 tổ" },
+  { code:"CT4.5", group:"CT4", name:"Thành lập hoặc duy trì 01 Câu lạc bộ chuyển đổi số / nhóm nòng cốt, chia sẻ và hỗ trợ đồng nghiệp (chỉ tiêu cấp trường)", measure:"Hoạt động của CLB/nhóm nòng cốt trong tháng; số lượt hỗ trợ đồng nghiệp", applies:"Cấp trường: nhóm nòng cốt / Văn phòng báo cáo; tổ khác chọn KAD" },
+  { code:"CT4.6", group:"CT4", name:"100% hoạt động ứng dụng AI tuân thủ bảo mật, kiểm chứng thông tin, tôn trọng bản quyền, bảo vệ dữ liệu HS", measure:"Số hoạt động AI đã kiểm chứng đúng quy định / tổng hoạt động AI của tổ trong tháng", applies:"Tất cả 12 tổ" }
+];
+var GVCN_ORGS = ["T01","T02","T03","T04","T05","T06","T07","T08","T09"];
+var LOP12_ORGS = ["T01","T02","T03","T04","T05","T06","T07","T08","T09"];
+var BG_FIELDS = [
+  { key:"gvTotal",   label:"Số giáo viên của tổ", hint:"Tổng số GV/CB thuộc tổ tại thời điểm báo cáo", scope:"all" },
+  { key:"lopCN",     label:"Số lớp có GVCN thuộc tổ", hint:"Số lớp chủ nhiệm do GV của tổ phụ trách", scope:"gvcn" },
+  { key:"hsCN",      label:"Tổng số HS các lớp chủ nhiệm", hint:"Cộng sĩ số các lớp chủ nhiệm ở ô bên trái", scope:"gvcn" },
+  { key:"suCo",      label:"Số vụ việc / sự cố phát sinh trong kỳ", hint:"Chỉ ghi số đếm (an toàn, kỷ luật, vệ sinh…), không ghi tên HS", scope:"all" },
+  { key:"onTap",     label:"Số buổi ôn tập lớp 12 trong kỳ", hint:"Cộng các buổi ôn tập môn của tổ cho lớp 12", scope:"lop12" },
+  { key:"hsHoTro",   label:"Số HS cần hỗ trợ đã được hỗ trợ", hint:"HS yếu/nguy cơ lớp 12 và HS cần quan tâm đã được GV hỗ trợ", scope:"lop12" },
+  { key:"nangLucSo", label:"Số GV đã hoàn thành năng lực số (lũy kế)", hint:"Đã bồi dưỡng và có chứng chỉ/chứng nhận theo quy định", scope:"all" },
+  { key:"sanPhamSo", label:"Số sản phẩm / học liệu số lên OLM–LMS trong kỳ", hint:"Bài giảng, học liệu, ngân hàng câu hỏi số của tổ", scope:"all" }
+];
+var STATUSES = [
+  { v:"", t:"— Chọn trạng thái —" },
+  { v:"D", t:"Đ — Đạt" }, { v:"DM", t:"ĐM — Đạt một phần" },
+  { v:"KD", t:"KĐ — Không đạt" }, { v:"KAD", t:"KAD — Không áp dụng" }
+];
+
+/* ================= TRẠNG THÁI DỮ LIỆU ================= */
+var IS_LIVE = /^https?:\/\//.test(CONFIG.APPS_SCRIPT_URL);
+var LS_KEY = "ntt2_thidua_reports_v1";
+var reports = []; // {org, period, submittedAt, reporter, bg:{}, rows:{code:{work,result,cum,status,link}}, good, hard, next}
+
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function periodById(id){ for (var i=0;i<PERIODS.length;i++) if (PERIODS[i].id===id) return PERIODS[i]; return PERIODS[0]; }
+function orgByCode(c){ for (var i=0;i<ORGS.length;i++) if (ORGS[i].code===c) return ORGS[i]; return ORGS[0]; }
+function currentPeriod(){
+  var today = new Date(); today.setHours(0,0,0,0);
+  for (var i=0;i<PERIODS.length;i++){
+    var d = new Date(PERIODS[i].deadline+"T23:59:59");
+    if (today <= d) return PERIODS[i];
+  }
+  return PERIODS[PERIODS.length-1];
+}
+function deadlineShort(p){ var parts = p.deadline.split("-"); return parts[2] + "/" + parts[1]; }
+function fmtDate(iso){
+  if(!iso) return "—";
+  var d = new Date(iso);
+  return ("0"+d.getDate()).slice(-2)+"/"+("0"+(d.getMonth()+1)).slice(-2)+"/"+d.getFullYear();
+}
+function isLate(report){
+  var p = periodById(report.period);
+  var dl = new Date(p.deadline+"T23:59:59");
+  return new Date(report.submittedAt) > dl;
+}
+function findReport(org, period){
+  for (var i=0;i<reports.length;i++) if (reports[i].org===org && reports[i].period===period) return reports[i];
+  return null;
+}
+function loadLocal(){
+  try { reports = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); if(!Array.isArray(reports)) reports = []; }
+  catch(e){ reports = []; }
+  reports = normalizeReports(reports);
+}
+function saveLocal(){ try { localStorage.setItem(LS_KEY, JSON.stringify(reports)); } catch(e){} }
+function cacheReports(){ try { localStorage.setItem(LS_KEY, JSON.stringify(reports)); } catch(e){} }
+function setCacheNotice(on){
+  var el = document.getElementById("cacheNotice");
+  if (!el) return;
+  el.innerHTML = on
+    ? '<div class="banner trial"><strong>Không tải được dữ liệu mới từ bảng dữ liệu chung — đang hiển thị dữ liệu đệm đã lưu trên máy này.</strong>Kiểm tra kết nối mạng rồi tải lại trang để thấy tiến độ mới nhất của các tổ.</div>'
+    : "";
+}
+/* Chuẩn hóa 1 bản ghi từ Sheet/localStorage về cấu trúc nội bộ {org, period, reporter, submittedAt, bg, rows,...}.
+   Bỏ qua bản ghi có tổ/kỳ không thuộc danh sách của trang (ví dụ bản ghi kiểm thử). */
+function normalizeReport(o){
+  if (!o || typeof o !== "object") return null;
+  var org = o.org || o.to || o.tenTo || "";
+  var period = o.period || o.ky || o.kyBaoCao || "";
+  var validOrg = false, validPeriod = false, i;
+  for (i=0;i<ORGS.length;i++) if (ORGS[i].code===org) validOrg = true;
+  for (i=0;i<PERIODS.length;i++) if (PERIODS[i].id===period) validPeriod = true;
+  if (!validOrg || !validPeriod) return null;
+  return {
+    org: org, period: period,
+    to: org, ky: period,
+    reporter: o.reporter || o.toTruong || "",
+    toTruong: o.reporter || o.toTruong || "",
+    submittedAt: o.submittedAt || o.thoiGianGui || null,
+    bg: o.bg || o.soLieuNen || {},
+    rows: o.rows || o.chiTiet || {},
+    chiTiet: o.rows || o.chiTiet || {},
+    good: o.good || "", hard: o.hard || "", next: o.next || ""
+  };
+}
+function normalizeReports(list){
+  var out = [], seen = {};
+  if (!Array.isArray(list)) return out;
+  list.forEach(function(o){
+    var n = normalizeReport(o);
+    if (!n) return;
+    var key = n.org + "|" + n.period;
+    if (seen[key] != null) out[seen[key]] = n; else { seen[key] = out.length; out.push(n); }
+  });
+  return out;
+}
+function loadReports(done){
+  if (!IS_LIVE){ loadLocal(); done && done(); return; }
+  fetch(CONFIG.APPS_SCRIPT_URL)
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var list = Array.isArray(data) ? data : (data && Array.isArray(data.data) ? data.data : null);
+      if (list){ reports = normalizeReports(list); cacheReports(); setCacheNotice(false); }
+      else { loadLocal(); setCacheNotice(true); }
+      done && done();
+    })
+    .catch(function(){ loadLocal(); setCacheNotice(true); done && done(); });
+}
+function toast(msg, isErr){
+  var t = document.getElementById("toast");
+  t.textContent = msg; t.className = "toast show" + (isErr ? " err" : "");
+  setTimeout(function(){ t.className = "toast"; }, 4200);
+}
+function openFolder(code){
+  var o = orgByCode(code);
+  if (!/^https?:\/\//.test(o.url)){
+    toast("Thư mục Drive của " + o.name + " (" + o.code + ") chưa được gắn link. Trường dán link vào CONFIG ở đầu mã nguồn là mở được.", true);
+    return;
+  }
+  window.open(o.url, "_blank", "noopener");
+}
+
+/* ================= KHỞI TẠO GIAO DIỆN ================= */
+function buildSelects(){
+  var os = document.getElementById("orgSelect");
+  os.innerHTML = ORGS.map(function(o){ return '<option value="'+o.code+'">'+esc(o.code+" · Tổ "+o.name)+'</option>'; }).join("");
+  var cur = currentPeriod();
+  var ps = document.getElementById("periodSelect");
+  ps.innerHTML = PERIODS.map(function(p){ return '<option value="'+p.id+'"'+(p.id===cur.id?" selected":"")+'>'+esc(p.label+" — hạn nộp "+deadlineShort(p))+'</option>'; }).join("");
+  var pp = document.getElementById("progressPeriod");
+  pp.innerHTML = PERIODS.map(function(p){ return '<option value="'+p.id+'"'+(p.id===cur.id?" selected":"")+'>'+esc(p.label)+'</option>'; }).join("");
+}
+function buildBgFields(){
+  var w = document.getElementById("bgFields");
+  w.innerHTML = BG_FIELDS.map(function(f){
+    return '<div class="bgfield" data-scope="'+f.scope+'">' +
+      '<label class="flabel" for="bg_'+f.key+'">'+esc(f.label)+'</label>' +
+      '<input type="number" min="0" step="any" id="bg_'+f.key+'" inputmode="decimal" placeholder="Để trống nếu không áp dụng" />' +
+      '<div class="hint">'+esc(f.hint)+'</div></div>';
+  }).join("");
+}
+function refreshBgVisibility(){
+  var code = document.getElementById("orgSelect").value;
+  var fields = document.querySelectorAll(".bgfield");
+  for (var i=0;i<fields.length;i++){
+    var scope = fields[i].getAttribute("data-scope");
+    var show = scope==="all" || (scope==="gvcn" && GVCN_ORGS.indexOf(code)>=0) || (scope==="lop12" && LOP12_ORGS.indexOf(code)>=0);
+    fields[i].style.display = show ? "" : "none";
+  }
+  var o = orgByCode(code);
+  document.getElementById("folderHint").textContent = "Thư mục gốc: MINH_CHUNG_" + o.code + "_" + "… — nơi lưu minh chứng của Tổ " + o.name + " cả năm học.";
+}
+function buildIndicators(){
+  var wrap = document.getElementById("ctGroups");
+  var html = '<h3 style="font-family:\'Noto Serif\',serif;font-size:19px;margin:6px 0 2px">3 · Báo cáo 22 chỉ tiêu theo 4 chuyên đề</h3>' +
+    '<p class="pdesc" style="margin-bottom:6px">Mỗi chỉ tiêu: ghi việc đã làm, kết quả tháng, lũy kế, chọn trạng thái và dán link minh chứng (tệp/thư mục con trong Drive của tổ, đặt tên theo quy định ở mục Thư mục minh chứng).</p>';
+  GROUPS.forEach(function(g, gi){
+    html += '<div class="group-head"><h3>'+esc(g.title)+'</h3><span class="kh">'+esc(g.kh)+'</span></div><p class="group-desc">'+esc(g.desc)+'</p>';
+    INDICATORS.filter(function(x){ return x.group===g.key; }).forEach(function(ind){
+      var opts = STATUSES.map(function(s){ return '<option value="'+s.v+'">'+esc(s.t)+'</option>'; }).join("");
+      html += '<div class="ct-card" data-code="'+ind.code+'">' +
+        '<div class="ct-top"><span class="ct-code">'+ind.code+'</span><div>' +
+        '<div class="ct-name">'+esc(ind.name)+'</div>' +
+        '<div class="ct-measure"><b>Cách theo dõi:</b> '+esc(ind.measure)+'<br/><b>Áp dụng:</b> '+esc(ind.applies)+'</div>' +
+        '</div></div>' +
+        '<div class="ct-fields">' +
+          '<div class="full"><label class="flabel" for="work_'+ind.code+'">Việc đã làm trong kỳ</label><textarea id="work_'+ind.code+'" placeholder="Việc cụ thể đã làm, thời gian, người phụ trách trong tổ…"></textarea></div>' +
+          '<div><label class="flabel" for="res_'+ind.code+'">Kết quả tháng (số)</label><input type="number" step="any" id="res_'+ind.code+'" inputmode="decimal" placeholder="Số lượng" /></div>' +
+          '<div><label class="flabel" for="cum_'+ind.code+'">Lũy kế (số)</label><input type="number" step="any" id="cum_'+ind.code+'" inputmode="decimal" placeholder="Cộng dồn từ đầu năm" /></div>' +
+          '<div><label class="flabel" for="st_'+ind.code+'">Trạng thái</label><select id="st_'+ind.code+'" data-status>'+opts+'</select></div>' +
+          '<div class="full"><label class="flabel" for="link_'+ind.code+'">Link minh chứng (Google Drive)</label><div class="linkrow">' +
+            '<input type="url" id="link_'+ind.code+'" placeholder="Dán link tệp/thư mục minh chứng đã đặt tên theo quy định…" />' +
+            '<button type="button" class="btn ghost small" data-openfolder>Mở thư mục tổ</button>' +
+          '</div></div>' +
+        '</div></div>';
+    });
+  });
+  wrap.innerHTML = html;
+  var sels = wrap.querySelectorAll("select[data-status]");
+  for (var i=0;i<sels.length;i++){
+    sels[i].addEventListener("change", function(){ this.className = this.value ? ("st-"+this.value) : ""; });
+  }
+  var btns = wrap.querySelectorAll("[data-openfolder]");
+  for (var j=0;j<btns.length;j++){
+    btns[j].addEventListener("click", function(){ openFolder(document.getElementById("orgSelect").value); });
+  }
+}
+function buildFolders(){
+  var rw = document.getElementById("rootFolderWrap");
+  if (rw && /^https?:\/\//.test(CONFIG.ROOT_FOLDER_URL || "")){
+    rw.innerHTML = '<div class="folder-card" style="border-color:var(--brand)"><div><span class="fname">Thư mục gốc chung của trường</span><br/>' +
+      '<span class="fcode">MINH_CHUNG_THI_DUA_2026_2027 — chứa 12 thư mục con của 12 tổ bên dưới</span></div>' +
+      '<a class="btn small" style="text-align:center;text-decoration:none" href="'+esc(CONFIG.ROOT_FOLDER_URL)+'" target="_blank" rel="noopener">Mở thư mục gốc MINH_CHUNG_THI_DUA_2026_2027</a></div>';
+  }
+  var w = document.getElementById("folderGrid");
+  w.innerHTML = ORGS.map(function(o){
+    var linked = /^https?:\/\//.test(o.url);
+    return '<div class="folder-card"><div><span class="fname">'+esc(o.code+" · Tổ "+o.name)+'</span><br/>' +
+      '<span class="fcode">Tên thư mục gốc: MINH_CHUNG_'+o.code+'_… · Thư mục con theo kỳ: '+ PERIODS.map(function(p){return p.id;}).join(", ") +'</span></div>' +
+      (linked
+        ? '<a class="btn small" style="text-align:center;text-decoration:none" href="'+esc(o.url)+'" target="_blank" rel="noopener">Mở thư mục Drive</a>'
+        : '<button type="button" class="btn ghost small" data-folder="'+o.code+'">Mở thư mục Drive</button><span class="hint">Chưa gắn link — chờ trường tạo thư mục và gửi link để dán vào CONFIG.</span>') +
+      '</div>';
+  }).join("");
+  var btns = w.querySelectorAll("[data-folder]");
+  for (var i=0;i<btns.length;i++) btns[i].addEventListener("click", function(){ openFolder(this.getAttribute("data-folder")); });
+}
+function buildBanner(){
+  var b = document.getElementById("modeBanner");
+  if (IS_LIVE){
+    b.innerHTML = '<div class="banner live"><strong>Đang dùng dữ liệu thật của trường.</strong>Báo cáo gửi đi được đồng bộ về bảng dữ liệu chung — mọi tổ đều thấy tiến độ của nhau.</div>';
+  } else {
+    b.innerHTML = '<div class="banner trial"><strong>Đang ở chế độ thử: dữ liệu chỉ lưu trên máy này, chưa đồng bộ giữa các tổ.</strong>Cần gắn link dữ liệu của trường để dùng thật: dán 12 link thư mục Drive của 12 tổ và link Apps Script vào phần CONFIG ở đầu mã nguồn trang này (tổng 13 liên kết).</div>';
+  }
+}
+function updateHeader(){
+  var cur = currentPeriod();
+  document.getElementById("curPeriodName").textContent = cur.label;
+  var dl = new Date(cur.deadline+"T23:59:59");
+  var now = new Date(); now.setHours(0,0,0,0);
+  var days = Math.ceil((dl - now) / 86400000);
+  document.getElementById("countdownNum").textContent = days < 0 ? "0" : days;
+  document.getElementById("countdownDate").textContent = days < 0
+    ? "Đã qua hạn nộp " + deadlineShort(cur) + " — tổ chưa nộp cần nộp bổ sung ngay"
+    : "Hạn chót: " + deadlineShort(cur) + " · Trường trả nhận xét ngày 28";
+  var n = 0;
+  ORGS.forEach(function(o){ if (findReport(o.code, cur.id)) n++; });
+  document.getElementById("heroSubmitted").textContent = n;
+}
+
+/* ================= TIẾN ĐỘ ================= */
+function reportStats(r){
+  var applicable = 0, dat = 0, dm = 0, kd = 0, kad = 0;
+  INDICATORS.forEach(function(ind){
+    var row = r.rows && r.rows[ind.code];
+    if (!row || !row.status) return;
+    if (row.status === "KAD"){ kad++; return; }
+    applicable++;
+    if (row.status === "D") dat++;
+    else if (row.status === "DM") dm++;
+    else if (row.status === "KD") kd++;
+  });
+  return { applicable: applicable, dat: dat, dm: dm, kd: kd, kad: kad,
+           pct: applicable ? Math.round(dat/applicable*100) : null };
+}
+function renderProgress(){
+  var pid = document.getElementById("progressPeriod").value;
+  var p = periodById(pid);
+  document.getElementById("progressPeriodLabel").textContent = p.label + " (hạn nộp " + deadlineShort(p) + ")";
+  var submitted = 0, onTime = 0, late = 0, pctSum = 0, pctCount = 0;
+  var orgHtml = ORGS.map(function(o){
+    var r = findReport(o.code, pid);
+    if (!r){
+      return '<div class="org-card"><div class="row1"><span class="oname">'+esc(o.name)+'</span><span class="ocode">'+o.code+'</span></div>' +
+        '<div style="margin-top:8px"><span class="chip none">Chưa BC — chưa nộp</span></div>' +
+        '<div class="bar zero"><i style="width:0%"></i></div><div class="pct">Chưa có báo cáo trong kỳ này</div></div>';
+    }
+    submitted++;
+    var lateFlag = isLate(r); if (lateFlag) late++; else onTime++;
+    var s = reportStats(r);
+    if (s.pct !== null){ pctSum += s.pct; pctCount++; }
+    var barCls = s.pct === null ? "zero" : (s.pct >= 80 ? "" : (s.pct >= 40 ? "low" : "zero"));
+    return '<div class="org-card"><div class="row1"><span class="oname">'+esc(o.name)+'</span><span class="ocode">'+o.code+'</span></div>' +
+      '<div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">' +
+      '<span class="chip '+(lateFlag?"late":"ok")+'">'+(lateFlag?"Đã nộp — trễ hạn":"Đã nộp — đúng hạn")+'</span>' +
+      '<span class="chip dat">Đ: '+s.dat+'</span><span class="chip dm">ĐM: '+s.dm+'</span><span class="chip kd">KĐ: '+s.kd+'</span><span class="chip none">KAD: '+s.kad+'</span></div>' +
+      '<div class="bar '+barCls+'"><i style="width:'+(s.pct||0)+'%"></i></div>' +
+      '<div class="pct"><b>'+(s.pct===null?"—":s.pct+"%")+'</b> chỉ tiêu đạt · Nộp ngày '+fmtDate(r.submittedAt)+' · '+esc(r.reporter||"")+'</div></div>';
+  }).join("");
+  document.getElementById("orgGrid").innerHTML = orgHtml;
+  document.getElementById("statsRow").innerHTML =
+    '<div class="stat"><div class="n">'+submitted+'/12</div><div class="t">Tổ đã nộp báo cáo kỳ này</div></div>' +
+    '<div class="stat"><div class="n">'+onTime+'</div><div class="t">Tổ nộp đúng hạn (trước 25)</div></div>' +
+    '<div class="stat"><div class="n">'+late+'</div><div class="t">Tổ nộp trễ hạn</div></div>' +
+    '<div class="stat"><div class="n">'+(pctCount?Math.round(pctSum/pctCount)+"%":"—")+'</div><div class="t">% chỉ tiêu đạt bình quân các tổ đã nộp</div></div>';
+  // Theo chuyên đề
+  document.getElementById("specBars").innerHTML = GROUPS.map(function(g){
+    var app = 0, dat = 0;
+    ORGS.forEach(function(o){
+      var r = findReport(o.code, pid); if (!r || !r.rows) return;
+      INDICATORS.filter(function(x){ return x.group===g.key; }).forEach(function(ind){
+        var row = r.rows[ind.code];
+        if (row && row.status && row.status!=="KAD"){ app++; if (row.status==="D") dat++; }
+      });
+    });
+    var pct = app ? Math.round(dat/app*100) : null;
+    return '<div class="spec"><div class="st">'+esc(g.title)+' <span class="kh" style="font-size:11.5px;background:var(--brandsoft);color:var(--brand);border-radius:99px;padding:2px 8px">'+esc(g.kh)+'</span></div>' +
+      '<div class="bar '+(pct===null?"zero":(pct>=80?"":"low"))+'"><i style="width:'+(pct||0)+'%"></i></div>' +
+      '<div class="pct"><b>'+(pct===null?"—":pct+"%")+'</b> đạt ('+dat+'/'+app+' lượt chỉ tiêu áp dụng đã báo cáo)</div></div>';
+  }).join("");
+  // Ma trận
+  document.getElementById("matrixWrap").innerHTML = ORGS.map(function(o){
+    var chips = PERIODS.map(function(pp){
+      var r = findReport(o.code, pp.id);
+      if (!r) return '<span class="pchip"><b>'+esc(pp.short)+'</b>Chưa BC</span>';
+      var lateFlag = isLate(r);
+      return '<span class="pchip '+(lateFlag?"done-late":"done")+'"><b>'+esc(pp.short)+'</b>'+fmtDate(r.submittedAt)+(lateFlag?" · trễ":" · đúng hạn")+'</span>';
+    }).join("");
+    return '<div class="matrix-org"><div class="mname">'+o.code+' · Tổ '+esc(o.name)+'</div><div class="pchips">'+chips+'</div></div>';
+  }).join("");
+  updateHeader();
+}
+
+/* ================= NẠP LẠI BÁO CÁO ĐÃ GỬI VÀO FORM ================= */
+function prefillForm(){
+  var org = document.getElementById("orgSelect").value;
+  var pid = document.getElementById("periodSelect").value;
+  var r = findReport(org, pid);
+  BG_FIELDS.forEach(function(f){
+    var el = document.getElementById("bg_"+f.key);
+    el.value = r && r.bg && r.bg[f.key] != null ? r.bg[f.key] : "";
+  });
+  INDICATORS.forEach(function(ind){
+    var row = r && r.rows ? r.rows[ind.code] : null;
+    document.getElementById("work_"+ind.code).value = row ? (row.work||"") : "";
+    document.getElementById("res_"+ind.code).value = row && row.result!=null ? row.result : "";
+    document.getElementById("cum_"+ind.code).value = row && row.cum!=null ? row.cum : "";
+    var st = document.getElementById("st_"+ind.code);
+    st.value = row ? (row.status||"") : "";
+    st.className = st.value ? ("st-"+st.value) : "";
+    document.getElementById("link_"+ind.code).value = row ? (row.link||"") : "";
+  });
+  document.getElementById("goodInput").value = r ? (r.good||"") : "";
+  document.getElementById("hardInput").value = r ? (r.hard||"") : "";
+  document.getElementById("nextInput").value = r ? (r.next||"") : "";
+  if (r) document.getElementById("reporterInput").value = r.reporter || "";
+  document.getElementById("submitBtn").textContent = r ? "Gửi lại báo cáo (cập nhật bản đã nộp)" : "Gửi báo cáo";
+}
+
+/* ================= GỬI BÁO CÁO ================= */
+function collectReport(){
+  var org = document.getElementById("orgSelect").value;
+  var pid = document.getElementById("periodSelect").value;
+  var bg = {};
+  BG_FIELDS.forEach(function(f){
+    var el = document.getElementById("bg_"+f.key);
+    if (el && el.offsetParent !== null && el.value !== "") bg[f.key] = parseFloat(el.value);
+  });
+  var rows = {};
+  INDICATORS.forEach(function(ind){
+    rows[ind.code] = {
+      work: document.getElementById("work_"+ind.code).value.trim(),
+      result: document.getElementById("res_"+ind.code).value === "" ? null : parseFloat(document.getElementById("res_"+ind.code).value),
+      cum: document.getElementById("cum_"+ind.code).value === "" ? null : parseFloat(document.getElementById("cum_"+ind.code).value),
+      status: document.getElementById("st_"+ind.code).value,
+      link: document.getElementById("link_"+ind.code).value.trim()
+    };
+  });
+  var reporter = document.getElementById("reporterInput").value.trim();
+  return {
+    to: org, ky: pid, toTruong: reporter,
+    org: org, period: pid, reporter: reporter,
+    submittedAt: new Date().toISOString(),
+    bg: bg, rows: rows, chiTiet: rows,
+    good: document.getElementById("goodInput").value.trim(),
+    hard: document.getElementById("hardInput").value.trim(),
+    next: document.getElementById("nextInput").value.trim()
+  };
+}
+function upsertLocal(rep){
+  var found = false;
+  for (var i=0;i<reports.length;i++) if (reports[i].org===rep.org && reports[i].period===rep.period){ reports[i]=rep; found=true; break; }
+  if (!found) reports.push(rep);
+  saveLocal();
+}
+document.getElementById("reportForm").addEventListener("submit", function(ev){
+  ev.preventDefault();
+  var rep = collectReport();
+  var msg = document.getElementById("submitMsg");
+  if (!rep.reporter){ toast("Chưa ghi họ tên tổ trưởng / người báo cáo.", true); document.getElementById("reporterInput").focus(); return; }
+  var missing = INDICATORS.filter(function(ind){ return !rep.rows[ind.code].status; });
+  if (missing.length){
+    toast("Còn " + missing.length + " chỉ tiêu chưa chọn trạng thái (mã đầu tiên: " + missing[0].code + "). Chỉ tiêu không áp dụng thì chọn KAD.", true);
+    var el = document.getElementById("st_"+missing[0].code);
+    el.scrollIntoView({ behavior:"smooth", block:"center" }); el.focus();
+    return;
+  }
+  var btn = document.getElementById("submitBtn");
+  btn.disabled = true; msg.textContent = "Đang gửi…"; msg.style.color = "var(--ink2)";
+  function after(){
+    btn.disabled = false; msg.textContent = "";
+    document.getElementById("progressPeriod").value = rep.period;
+    renderProgress(); prefillForm();
+    switchTab("progress");
+    toast("Đã ghi nhận báo cáo của Tổ " + orgByCode(rep.org).name + " — " + periodById(rep.period).label + ". Tiến độ đã cập nhật.");
+  }
+  if (IS_LIVE){
+    fetch(CONFIG.APPS_SCRIPT_URL, { method:"POST", headers:{ "Content-Type":"text/plain;charset=utf-8" }, body: JSON.stringify(rep) })
+      .then(function(){ return loadReports(after); })
+      .catch(function(){
+        btn.disabled = false; msg.textContent = "";
+        upsertLocal(rep); setCacheNotice(true);
+        document.getElementById("progressPeriod").value = rep.period;
+        renderProgress(); prefillForm();
+        toast("Không gửi được lên bảng dữ liệu chung (mất kết nối?). Báo cáo đã lưu tạm trên máy này — kết nối lại rồi bấm Gửi lại để đồng bộ.", true);
+      });
+  } else {
+    upsertLocal(rep); after();
+  }
+});
+
+/* ================= TABS & SỰ KIỆN ================= */
+function switchTab(name){
+  var tabs = document.querySelectorAll(".tabs button");
+  for (var i=0;i<tabs.length;i++) tabs[i].setAttribute("aria-selected", tabs[i].getAttribute("data-tab")===name ? "true" : "false");
+  var panels = document.querySelectorAll("section.panel");
+  for (var j=0;j<panels.length;j++) panels[j].classList.toggle("active", panels[j].id==="panel-"+name);
+  window.scrollTo({ top: document.querySelector(".tabs").offsetTop - 10, behavior:"smooth" });
+}
+document.querySelectorAll(".tabs button").forEach(function(b){
+  b.addEventListener("click", function(){ switchTab(b.getAttribute("data-tab")); });
+});
+document.getElementById("orgSelect").addEventListener("change", function(){ refreshBgVisibility(); prefillForm(); });
+document.getElementById("periodSelect").addEventListener("change", prefillForm);
+document.getElementById("progressPeriod").addEventListener("change", renderProgress);
+document.getElementById("openFolderBtn").addEventListener("click", function(){ openFolder(document.getElementById("orgSelect").value); });
+
+/* ================= CHẠY ================= */
+buildSelects(); buildBgFields(); buildIndicators(); buildFolders(); buildBanner();
+refreshBgVisibility();
+loadReports(function(){ prefillForm(); renderProgress(); updateHeader(); });
+</script>
+</body>
+</html>
